@@ -31,7 +31,7 @@ our @EXPORT = qw(
 
 our @RULES = ('rook', 'bishop', 'queen');
 
-sub g2_make($default, $adj_rule) {
+sub g2_make($default = '.', $adj_rule = 'rook') {
 	if ( !grep( /^$adj_rule$/, @RULES ) ) {
 		die "$adj_rule is not a valid adjacency rule: @RULES";
 	}
