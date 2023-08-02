@@ -10,9 +10,9 @@ perl day07.pl
 perl day08.pl
 perl day09.pl
 perl day10.pl
+perl day11.pl
+perl day12.pl
 
-# perl day11.pl
-# perl day12.pl
 # perl day13.pl
 # perl day14.pl
 # perl day17.pl
