@@ -12,14 +12,11 @@ use Modern::Perl 2022;
 use autodie;
 use Data::Dumper;
 use feature 'signatures';
-#use Digest::MD5 qw(md5_hex);
 use Math::Combinatorics qw(combine);
 use Storable 'dclone';
 no warnings 'recursion';
 
 use AOC::Util;
-#use AOC::Geometry;
-#use AOC::Grid;
 
 my $INPUT_PATH = '../input';
 #my $INPUT_FILE = 'day11_test.txt';
@@ -33,7 +30,7 @@ my %state = parse_input(@input);
 our $label_regex = qr/([cg])-(\w+)/;
 
 solve_part_one(%state);
-#solve_part_two(@input);
+solve_part_two(%state);
 
 exit( 0 );
 
@@ -43,18 +40,34 @@ our $min_steps;
 sub solve_part_one(%initial_state) {
 	%tried = ();
 	# Originally set to 1000000, but first tests allow for a lower starting limit
-	$min_steps = 717; #67900;
+	$min_steps = 50; #67900;
 	try_state(\%initial_state);
 	
 	say "Part One: reached goal in $min_steps.";
 }
 
-sub solve_part_two(@input) {
-
+sub solve_part_two(%initial_state) {
+	%tried = ();
+	$min_steps = 65; #99; #185; #293; # Started at 1000
+	
+	my @extra = ('c-elerium', 'g-elerium', 'c-dilithium', 'g-dilithium');
+	for my $x (@extra) {
+		$initial_state{'floors'}[0]{$x} = 1;
+	}
+	
+	my $new_state = make_child(\%initial_state, [], 0);
+	$new_state->{'count'} = 0;
+	
+	#print_state($new_state);
+	
+	try_state($new_state);
+	
+	say "Part Two: reached goal in $min_steps.";
 }
 
 sub try_state($test_state) {
 	$tried{$test_state->{'key'}} = $test_state->{'count'};
+	say scalar(keys(%tried)) if scalar(keys(%tried)) % 10000 == 0;
 	
 	my $estimate = theoretical_steps_to_complete($test_state);
 	if ($test_state->{'count'} + $estimate >= $min_steps) {
@@ -63,7 +76,8 @@ sub try_state($test_state) {
 	if (is_state_complete($test_state)) {
 		$min_steps = $test_state->{'count'};
 		say "Reached goal in $min_steps.";
-		#print_state($test_state);
+		# Trim %tried
+		delete @tried{grep { $tried{$_} > $min_steps } keys %tried};
 		return 1;
 	}
 	
@@ -77,7 +91,6 @@ sub try_state($test_state) {
 			}
 		}
 		last if try_state($child_state); # Only one child state can be complete. 
-		say scalar(keys(%tried)) if scalar(keys(%tried)) % 1000 == 0;
 	}
 	return 0;
 }
@@ -96,9 +109,7 @@ sub valid_child_states($s_ref) {
 	
 	for my $dest_floor ($current_floor+1, $current_floor-1) {
 		if ($dest_floor >= 0 && $dest_floor <= 3) {
-			#print Dumper(@taking);
 			for my $elevator_contents (@taking) {
-#				say "Heading to floor $dest_floor with " . join(',', @{$elevator_contents});
 				if (!will_fry($elevator_contents, $s_ref->{'floors'}[$dest_floor])) {
 					my $new_state = make_child($s_ref, $elevator_contents, $dest_floor);
 					push(@states, $new_state);
@@ -106,11 +117,6 @@ sub valid_child_states($s_ref) {
 			}
 		}
 	}
-# 	say "Valid child states:";
-# 	for my $s (@states) {
-# 		print_state($s);
-# 	}
-# 	say "***************";
 	return @states;
 }
 
@@ -138,10 +144,7 @@ sub will_fry($elevator, $floor) {
 			$is_generator = 1;
 		}
 	}
-	
-	
-	#print Dumper($elevator, $floor, $is_unshielded_chip, $is_generator);
-	
+		
 	return ($is_unshielded_chip && $is_generator);
 }
 
@@ -165,11 +168,6 @@ sub make_child($s_ref, $elevator, $dest_floor) {
 	# key, parent
 	$child->{'key'} = state_key_str($child);
 	$child->{'parent'} = $s_ref->{'key'};
-	
-# 	say "Original:";
-# 	print_state($s_ref);
-# 	say "Child:";
-# 	print_state($child);
 	
 	return $child;
 }
@@ -224,7 +222,6 @@ sub state_key_str($s_ref) {
 	}
 
 	return join('|', @key);
-	#return md5_hex(join('|', @key));
 }
 
 sub is_state_complete($s_ref) {
@@ -247,6 +244,7 @@ sub theoretical_steps_to_complete($s_ref) {
 			$moved_count++;
 			$count_on_floor--;
 		}
+		# Need to go back down and get items, i.e. 2x the steps
 		$estimate += (3 - $i) * $count_on_floor * 2;
 	}
 	return $estimate;
