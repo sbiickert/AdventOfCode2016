@@ -28,12 +28,15 @@ say "Advent of Code 2016, Day 14: One-Time Pad";
 
 our $salt = $input[0];
 
-solve_part_one();
-#solve_part_two(@input);
+my $result1 = solve(0);
+say "Part One: the 64th index is $result1";
+
+my $result2 = solve(2016);
+say "Part Two: the 64th index is $result2";
 
 exit( 0 );
 
-sub solve_part_one() {
+sub solve($additional_hashings) {
 	my $current_index = 0;
 	my @hashes = ();
 	my %found_keys = ();
@@ -41,6 +44,9 @@ sub solve_part_one() {
 	
 	while ( scalar(keys %found_keys) < 64 ) {
 		my $hash = md5_hex($salt.$current_index);
+		for (1 .. $additional_hashings) {
+			$hash = md5_hex($hash);
+		}
 		push(@hashes, $hash);
 		
 		if ( $hash =~ m/(.)\1{4}/ ) {
@@ -51,7 +57,6 @@ sub solve_part_one() {
 				for my $i (@{$triples{$triple}}) {
 					if ($current_index - $i < 1000) {
 						$found_keys{$i} = $hashes[$i];
-						#say "$hashes[$i] [$i] -> $hash [$current_index]";
 					}
 				}
 				delete $triples{$triple};
@@ -68,16 +73,14 @@ sub solve_part_one() {
 		$current_index++;
 	}
 	
-# 	my $count = 1;
+	# my $count = 1;
 # 	for my $index (sort {$a <=> $b} keys( %found_keys )) {
 # 		say "$count: $index $found_keys{$index}";
 # 		$count++;
 # 	}
 	
 	my @found_key_indexes = sort {$a <=> $b} keys( %found_keys );
-	my $sixty_fourth_index = $found_key_indexes[63];
-	
-	say "Part One: the 64th index is $sixty_fourth_index";
+	return $found_key_indexes[63];
 }
 
 sub solve_part_two(@input) {
