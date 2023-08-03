@@ -24,7 +24,7 @@ our @EXPORT = qw(
 	e1_make e1_contains e1_equal e1_intersect e1_is_empty
 	e1_overlaps e1_to_str e1_union e1_size e1_contains_value
 	
-	e2_make e2_build e2_expand_to_fit e2_to_str
+	e2_make e2_build e2_expand_to_fit e2_to_str e2_is_empty
 	e2_min e2_max e2_width e2_height e2_area e2_all_coords
 	e2_equal e2_contains e2_intersect e2_union e2_inset
 	

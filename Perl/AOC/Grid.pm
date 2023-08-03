@@ -14,7 +14,7 @@ use AOC::Geometry;
 our @ISA = qw( Exporter );
 #our @EXPORT_OK = qw(g2_make g3_make);
 our @EXPORT = qw(
-	g2_make g2_get g2_get_scalar g2_set g2_clear g2_extent 
+	g2_make g2_default g2_get g2_get_scalar g2_set g2_clear g2_extent 
 	g2_coords g2_coords_with_value g2_histogram 
 	g2_offsets g2_neighbors g2_print
 
@@ -36,6 +36,10 @@ sub g2_make($default = '.', $adj_rule = 'rook') {
 		die "$adj_rule is not a valid adjacency rule: @RULES";
 	}
 	my $g2d = [{}, $default, $adj_rule, []];
+}
+
+sub g2_default($g2d) {
+	return $g2d->[1];
 }
 
 sub g2_get($g2d, $c2d) {
