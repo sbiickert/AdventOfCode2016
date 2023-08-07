@@ -10,7 +10,7 @@
 
 @implementation AOCExtent2D
 
-+ (AOCExtent2D *)xMin:(int)xmin yMin:(int)ymin xMax:(int)xmax yMax:(int)ymax {
++ (AOCExtent2D *)xMin:(NSInteger)xmin yMin:(NSInteger)ymin xMax:(NSInteger)xmax yMax:(NSInteger)ymax {
 	return [[AOCExtent2D alloc] initXMin:xmin yMin:ymin xMax:xmax yMax:ymax];
 }
 
@@ -20,7 +20,7 @@
 }
 
 
-- (AOCExtent2D *)initXMin:(int)xmin yMin:(int)ymin xMax:(int)xmax yMax:(int)ymax
+- (AOCExtent2D *)initXMin:(NSInteger)xmin yMin:(NSInteger)ymin xMax:(NSInteger)xmax yMax:(NSInteger)ymax
 {
 	AOCCoord2D *c1 = [AOCCoord2D x:xmin y:ymin];
 	AOCCoord2D *c2 = [AOCCoord2D x:xmax y:ymax];
@@ -48,10 +48,10 @@
 		_max = [AOCCoord2D origin];
 		return self;
 	}
-	int xmin = [array firstObject].x;
-	int xmax = [array firstObject].x;
-	int ymin = [array firstObject].y;
-	int ymax = [array firstObject].y;
+	NSInteger xmin = [array firstObject].x;
+	NSInteger xmax = [array firstObject].x;
+	NSInteger ymin = [array firstObject].y;
+	NSInteger ymax = [array firstObject].y;
 	for (int i = 1; i < array.count; i++) {
 		xmin = MIN(xmin, [array objectAtIndex:i].x);
 		xmax = MAX(xmax, [array objectAtIndex:i].x);
@@ -63,25 +63,25 @@
 	return self;
 }
 
-- (int)width
+- (NSInteger)width
 {
 	return self.max.x - self.min.x + 1;
 }
 
-- (int)height
+- (NSInteger)height
 {
 	return self.max.y - self.min.y + 1;
 }
 
-- (int)area
+- (NSInteger)area
 {
 	return self.width * self.height;
 }
 
 - (AOCCoord2D *)center
 {
-	int x = self.width / 2;
-	int y = self.height / 2;
+	NSInteger x = self.width / 2;
+	NSInteger y = self.height / 2;
 	return [AOCCoord2D x:x y:y];
 }
 
@@ -104,8 +104,8 @@
 - (NSArray<AOCCoord2D *> *)allCoords
 {
 	NSMutableArray<AOCCoord2D *> *coords = [NSMutableArray array];
-	for (int x = self.min.x; x <= self.max.x; x++) {
-		for (int y = self.min.y; y <= self.max.y; y++) {
+	for (NSInteger x = self.min.x; x <= self.max.x; x++) {
+		for (NSInteger y = self.min.y; y <= self.max.y; y++) {
 			[coords addObject:[AOCCoord2D x:x y:y]];
 		}
 	}
@@ -120,12 +120,12 @@
 			coord.y <= self.max.y;
 }
 
-- (AOCExtent2D *)inset:(int)amount
+- (AOCExtent2D *)inset:(NSInteger)amount
 {
-	int xmin = self.min.x + amount;
-	int xmax = self.max.x - amount;
-	int ymin = self.min.y + amount;
-	int ymax = self.max.y - amount;
+	NSInteger xmin = self.min.x + amount;
+	NSInteger xmax = self.max.x - amount;
+	NSInteger ymin = self.min.y + amount;
+	NSInteger ymax = self.max.y - amount;
 	
 	return [AOCExtent2D xMin:xmin yMin:ymin xMax:xmax yMax:ymax];
 }

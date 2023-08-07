@@ -27,17 +27,17 @@ extern NSString * const RIGHT;
 @interface AOCCoord2D : NSObject <NSCopying>
 
 + (AOCCoord2D *)origin;
-+ (AOCCoord2D *)x:(int)x y:(int)y;
++ (AOCCoord2D *)x:(NSInteger)x y:(NSInteger)y;
 + (AOCCoord2D *)copyOf:(AOCCoord2D *)other;
 + (AOCCoord2D *)offset:(NSString *)direction;
 
-- (AOCCoord2D *)initX:(int)x y:(int)y;
+- (AOCCoord2D *)initX:(NSInteger)x y:(NSInteger)y;
 
-@property (readonly) int x;
-@property (readonly) int y;
+@property (readonly) NSInteger x;
+@property (readonly) NSInteger y;
 
-- (int)row;
-- (int)col;
+- (NSInteger)row;
+- (NSInteger)col;
 
 - (BOOL)isEqualToCoord2D:(AOCCoord2D *)other;
 
@@ -46,22 +46,22 @@ extern NSString * const RIGHT;
 - (AOCCoord2D *)offset:(NSString *)direction;
 
 - (double)distanceTo:(AOCCoord2D *)other;
-- (int)manhattanDistanceTo:(AOCCoord2D *)other;
+- (NSInteger)manhattanDistanceTo:(AOCCoord2D *)other;
 
 @end
 
 @interface AOCCoord3D : NSObject <NSCopying>
 
 + (AOCCoord3D *)origin;
-+ (AOCCoord3D *)x:(int)x y:(int)y z:(int)z;
++ (AOCCoord3D *)x:(NSInteger)x y:(NSInteger)y z:(NSInteger)z;
 + (AOCCoord3D *)copyOf:(AOCCoord3D *)other;
 //+ (AOCCoord2D *)offset:(NSString *)direction;
 
-- (AOCCoord3D *)initX:(int)x y:(int)y z:(int)z;
+- (AOCCoord3D *)initX:(NSInteger)x y:(NSInteger)y z:(NSInteger)z;
 
-@property (readonly) int x;
-@property (readonly) int y;
-@property (readonly) int z;
+@property (readonly) NSInteger x;
+@property (readonly) NSInteger y;
+@property (readonly) NSInteger z;
 
 - (BOOL)isEqualToCoord3D:(AOCCoord3D *)other;
 
@@ -70,6 +70,6 @@ extern NSString * const RIGHT;
 //- (AOCCoord3D *)offset:(NSString *)direction;
 
 - (double)distanceTo:(AOCCoord3D *)other;
-- (int)manhattanDistanceTo:(AOCCoord3D *)other;
+- (NSInteger)manhattanDistanceTo:(AOCCoord3D *)other;
 
 @end

@@ -15,6 +15,7 @@
 		3741BA692A7FF2C200E16F5D /* AOCCoord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA612A7FF2C200E16F5D /* AOCCoord.m */; };
 		3741BA6A2A7FF2C200E16F5D /* AOCGrid2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA632A7FF2C200E16F5D /* AOCGrid2D.m */; };
 		3741BA6D2A7FF31500E16F5D /* AOCDay01.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA6C2A7FF31500E16F5D /* AOCDay01.m */; };
+		379CAF3F2A81563900462058 /* AOCPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 379CAF3E2A81563900462058 /* AOCPosition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		3741BA642A7FF2C200E16F5D /* AOCInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOCInput.h; sourceTree = "<group>"; };
 		3741BA6B2A7FF2DB00E16F5D /* AOCDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOCDay.h; sourceTree = "<group>"; };
 		3741BA6C2A7FF31500E16F5D /* AOCDay01.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay01.m; sourceTree = "<group>"; };
+		379CAF3E2A81563900462058 /* AOCPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCPosition.m; sourceTree = "<group>"; };
+		379CAF402A81565A00462058 /* AOCPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOCPosition.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				3741BA5F2A7FF2C200E16F5D /* AOCSolution.m */,
 				3741BA622A7FF2C200E16F5D /* AOCStrings.h */,
 				3741BA602A7FF2C200E16F5D /* AOCStrings.m */,
+				379CAF402A81565A00462058 /* AOCPosition.h */,
+				379CAF3E2A81563900462058 /* AOCPosition.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3741BA672A7FF2C200E16F5D /* AOCSolution.m in Sources */,
+				379CAF3F2A81563900462058 /* AOCPosition.m in Sources */,
 				3741BA512A7FF24C00E16F5D /* main.m in Sources */,
 				3741BA682A7FF2C200E16F5D /* AOCStrings.m in Sources */,
 				3741BA652A7FF2C200E16F5D /* AOCExtent2D.m in Sources */,

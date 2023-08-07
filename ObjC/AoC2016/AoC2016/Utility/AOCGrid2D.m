@@ -49,10 +49,10 @@ NSString * const HEX = @"hex";
 	return [_data objectForKey:coord];
 }
 
-- (int)intAtCoord:(AOCCoord2D *)coord
+- (NSInteger)intAtCoord:(AOCCoord2D *)coord
 {
 	NSNumber *num = (NSNumber *)[self objectAtCoord:coord];
-	return [num intValue];
+	return [num integerValue];
 }
 
 - (NSString *)stringAtCoord:(AOCCoord2D *)coord
@@ -170,21 +170,21 @@ NSString * const HEX = @"hex";
 
 - (void)printInvertedY:(BOOL)invert withOverlay:(NSDictionary<AOCCoord2D *, NSString *> *)overlay
 {
-	int startRow = _extent.min.y;
-	int endRow = _extent.max.y;
-	int step = 1;
+	NSInteger startRow = _extent.min.y;
+	NSInteger endRow = _extent.max.y;
+	NSInteger step = 1;
 
 	if (invert) {
 		step = -1;
-		int temp = startRow;
+		NSInteger temp = startRow;
 		startRow = endRow;
 		endRow = temp;
 	}
 	
-	int row = startRow;
+	NSInteger row = startRow;
 	while (true) {
 		NSString *line = @"";
-		for (int col = _extent.min.x; col <= _extent.max.x; col++) {
+		for (NSInteger col = _extent.min.x; col <= _extent.max.x; col++) {
 			AOCCoord2D *c = [AOCCoord2D x:col y:row];
 			NSObject *value = [self objectAtCoord:c];
 			if (overlay != nil && [overlay objectForKey:c] != nil) {

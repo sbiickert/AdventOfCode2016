@@ -23,7 +23,7 @@ extern NSString * const HEX;
 @property (readonly) NSObject *defaultValue;
 
 - (NSObject *)objectAtCoord:(AOCCoord2D *)coord;
-- (int)intAtCoord:(AOCCoord2D *)coord;
+- (NSInteger)intAtCoord:(AOCCoord2D *)coord;
 - (NSString *)stringAtCoord:(AOCCoord2D *)coord;
 - (void)setObject:(NSObject *)value atCoord:(AOCCoord2D *)coord;
 

@@ -67,7 +67,7 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 	return [[AOCCoord2D alloc] initX:0 y:0];
 }
 
-+ (AOCCoord2D *)x:(int)x y:(int)y {
++ (AOCCoord2D *)x:(NSInteger)x y:(NSInteger)y {
 	return [[AOCCoord2D alloc] initX:x y:y];
 }
 
@@ -83,23 +83,23 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 }
 
 
-- (AOCCoord2D *)initX:(int)x y:(int)y {
+- (AOCCoord2D *)initX:(NSInteger)x y:(NSInteger)y {
 	self = [super init];
 	_x = x;
 	_y = y;
 	return self;
 }
 
-- (int)row {
+- (NSInteger)row {
 	return self.y;
 }
 
-- (int)col {
+- (NSInteger)col {
 	return self.x;
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[%d,%d]", self.x, self.y];
+	return [NSString stringWithFormat:@"[%ld,%ld]", self.x, self.y];
 }
 
 - (AOCCoord2D *)add:(AOCCoord2D *)other {
@@ -128,9 +128,9 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 	return sqrt(pow(delta.x, 2) + pow(delta.y, 2));
 }
 
-- (int)manhattanDistanceTo:(AOCCoord2D *)other {
+- (NSInteger)manhattanDistanceTo:(AOCCoord2D *)other {
 	AOCCoord2D *delta = [self delta:other];
-	return abs(delta.x) + abs(delta.y);
+	return labs(delta.x) + labs(delta.y);
 }
 
 - (BOOL)isEqualToCoord2D:(AOCCoord2D *)other {
@@ -176,7 +176,7 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 	return [[AOCCoord3D alloc] initX:0 y:0 z:0];
 }
 
-+ (AOCCoord3D *)x:(int)x y:(int)y z:(int)z
++ (AOCCoord3D *)x:(NSInteger)x y:(NSInteger)y z:(NSInteger)z
 {
 	return [[AOCCoord3D alloc] initX:x y:y z:z];
 }
@@ -188,7 +188,7 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 
 //+ (AOCCoord2D *)offset:(NSString *)direction;
 
-- (AOCCoord3D *)initX:(int)x y:(int)y z:(int)z
+- (AOCCoord3D *)initX:(NSInteger)x y:(NSInteger)y z:(NSInteger)z
 {
 	self = [super init];
 	_x = x;
@@ -198,7 +198,7 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"[%d,%d,%d]", self.x, self.y, self.z];
+	return [NSString stringWithFormat:@"[%ld,%ld,%ld]", self.x, self.y, self.z];
 }
 
 - (AOCCoord3D *)add:(AOCCoord3D *)other
@@ -226,10 +226,10 @@ static NSDictionary<NSString *, AOCCoord2D *> *_offsets = nil;
 	return 0.0;
 }
 
-- (int)manhattanDistanceTo:(AOCCoord3D *)other
+- (NSInteger)manhattanDistanceTo:(AOCCoord3D *)other
 {
 	AOCCoord3D *delta = [self delta:other];
-	return abs(delta.x) + abs(delta.y) + abs(delta.z);
+	return labs(delta.x) + labs(delta.y) + labs(delta.z);
 }
 
 - (BOOL)isEqualToCoord3D:(AOCCoord3D *)other
