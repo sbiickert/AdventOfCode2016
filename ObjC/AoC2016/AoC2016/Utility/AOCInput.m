@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "AOCInput.h"
 
-NSString * const INPUT_FOLDER = @"~/Developer/Advent of Code/2017/AdventOfCode2017/input";
+NSString * const INPUT_FOLDER = @"~/Developer/Advent of Code/2016/AdventOfCode2016/input";
 
 @implementation AOCInput
 
