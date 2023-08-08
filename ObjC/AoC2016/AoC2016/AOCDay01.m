@@ -33,7 +33,8 @@
 	AOCPosition *pos = [AOCPosition origin];
 	
 	for (NSString *instr in instructions) {
-		[pos rotate:instr];
+		NSString *turnDir = [[instr substringToIndex: 1] isEqualToString:@"L"] ? LEFT : RIGHT;
+		[pos turn: turnDir];
 		NSInteger dist = [[instr substringFromIndex:1] integerValue];
 		[pos moveForward:dist];
 	}
@@ -51,7 +52,8 @@
 	
 	[map setObject:@"X" atCoord:pos.location];
 	for (NSString *instr in instructions) {
-		[pos rotate:instr];
+		NSString *turnDir = [[instr substringToIndex: 1] isEqualToString:@"L"] ? LEFT : RIGHT;
+		[pos turn: turnDir];
 		NSInteger dist = [[instr substringFromIndex:1] integerValue];
 		for (NSInteger i = 0; i < dist; i++) {
 			[pos moveForward:1];

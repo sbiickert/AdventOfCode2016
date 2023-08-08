@@ -8,6 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "AOCPosition.h"
 
+NSString * const CW = @"clockwise";
+NSString * const CCW = @"counterclockwise";
+
 @implementation AOCPosition
 
 + (AOCPosition *)origin {
@@ -21,8 +24,17 @@
 	return self;
 }
 
-- (void)rotate:(NSString *)dirLR {
-	int turn = [[[dirLR substringToIndex: 1] uppercaseString] isEqualToString:@"L"] ? -1 : 1;
+- (void)turn:(NSString *)turnDirection {
+	int turn = 0;
+	if ([turnDirection isEqualToString:LEFT] || [turnDirection isEqualToString:CCW]) {
+		turn = -1;
+	}
+	else if ([turnDirection isEqualToString:RIGHT] || [turnDirection isEqualToString:CW]) {
+		turn = 1;
+	}
+	else {
+		NSLog(@"Unrecognized turn direction passed to turn: %@. See constants in AOCCoord.h and AOCPosition.h", turnDirection);
+	}
 	NSArray<NSString *> *dirs = @[NORTH, EAST, SOUTH, WEST];
 	NSInteger index = [dirs indexOfObject:self.direction];
 	if (index == NSNotFound) {

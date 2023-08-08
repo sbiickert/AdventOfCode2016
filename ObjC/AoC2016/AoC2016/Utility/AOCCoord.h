@@ -21,8 +21,8 @@ extern NSString * const HSW; // hex grid
 extern NSString * const HSE; // hex grid
 extern NSString * const UP;
 extern NSString * const DOWN;
-extern NSString * const LEFT;
-extern NSString * const RIGHT;
+extern NSString * const LEFT;	// Also used for AOCPosition turn:
+extern NSString * const RIGHT;	// Also used for AOCPosition turn:
 
 @interface AOCCoord2D : NSObject <NSCopying>
 

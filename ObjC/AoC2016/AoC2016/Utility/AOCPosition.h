@@ -7,14 +7,27 @@
 
 #import "AOCCoord.h"
 
+extern NSString * const CW;
+extern NSString * const CCW;
+
 @interface AOCPosition: NSObject <NSCopying>
 
 + (AOCPosition *)origin;
 
 @property AOCCoord2D *location;
+
+/*
+ One of AOCCoord constants:
+ NORTH, SOUTH, EAST, WEST
+ UP, DOWN, LEFT, RIGHT
+ */
 @property (readonly) NSString *direction;
 
-- (void)rotate:(NSString *)instruction;
+/*
+ One of AOCCoord constants: LEFT, RIGHT
+ or AOCPosition constants: CW, CCW
+ */
+- (void)turn:(NSString *)turnDirection;
 - (void)moveForward:(NSInteger)distance;
 
 @end
