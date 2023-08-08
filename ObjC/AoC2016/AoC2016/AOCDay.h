@@ -11,3 +11,6 @@
 
 @interface AOCDay01 : AOCSolution
 @end
+
+@interface AOCDay02 : AOCSolution
+@end

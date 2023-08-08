@@ -49,7 +49,7 @@ NSString * const HEX = @"hex";
 	return [_data objectForKey:coord];
 }
 
-- (NSInteger)intAtCoord:(AOCCoord2D *)coord
+- (NSInteger)integerAtCoord:(AOCCoord2D *)coord
 {
 	NSNumber *num = (NSNumber *)[self objectAtCoord:coord];
 	return [num integerValue];

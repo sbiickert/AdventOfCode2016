@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3732891E2A8290670088F960 /* AOCDay02.m in Sources */ = {isa = PBXBuildFile; fileRef = 3732891D2A8290670088F960 /* AOCDay02.m */; };
 		3741BA512A7FF24C00E16F5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA502A7FF24C00E16F5D /* main.m */; };
 		3741BA652A7FF2C200E16F5D /* AOCExtent2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA5B2A7FF2C100E16F5D /* AOCExtent2D.m */; };
 		3741BA662A7FF2C200E16F5D /* AOCInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741BA5E2A7FF2C200E16F5D /* AOCInput.m */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3732891D2A8290670088F960 /* AOCDay02.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay02.m; sourceTree = "<group>"; };
 		3741BA4D2A7FF24C00E16F5D /* AoC2016 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AoC2016; sourceTree = BUILT_PRODUCTS_DIR; };
 		3741BA502A7FF24C00E16F5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3741BA572A7FF29300E16F5D /* AoC2016.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AoC2016.entitlements; sourceTree = "<group>"; };
@@ -82,11 +84,12 @@
 		3741BA4F2A7FF24C00E16F5D /* AoC2016 */ = {
 			isa = PBXGroup;
 			children = (
+				3741BA502A7FF24C00E16F5D /* main.m */,
+				3741BA6C2A7FF31500E16F5D /* AOCDay01.m */,
+				3732891D2A8290670088F960 /* AOCDay02.m */,
 				3741BA6B2A7FF2DB00E16F5D /* AOCDay.h */,
 				3741BA582A7FF2B300E16F5D /* Utility */,
 				3741BA572A7FF29300E16F5D /* AoC2016.entitlements */,
-				3741BA502A7FF24C00E16F5D /* main.m */,
-				3741BA6C2A7FF31500E16F5D /* AOCDay01.m */,
 			);
 			path = AoC2016;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3732891E2A8290670088F960 /* AOCDay02.m in Sources */,
 				3741BA672A7FF2C200E16F5D /* AOCSolution.m in Sources */,
 				379CAF3F2A81563900462058 /* AOCPosition.m in Sources */,
 				3741BA512A7FF24C00E16F5D /* main.m in Sources */,
