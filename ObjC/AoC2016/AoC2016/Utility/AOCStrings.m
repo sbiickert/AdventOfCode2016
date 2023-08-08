@@ -65,5 +65,21 @@
 	return r.location == NSNotFound && self.length > 0;
 }
 
+- (NSArray<NSString *> *)splitOnSpaces {
+	NSPredicate *p = [NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+		return [[object description] isEqualToString:@""] == NO;
+	}];
+	NSArray<NSString *> *strings = [[self componentsSeparatedByString:@" "] filteredArrayUsingPredicate:p];
+	return strings;
+}
+
+- (NSArray<NSNumber *> *)integersFromCSV {
+	NSArray<NSString *> *strings = [self componentsSeparatedByString:@","];
+	NSMutableArray<NSNumber *> *numbers = [NSMutableArray array];
+	[strings enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[numbers addObject:[NSNumber numberWithInteger:[[obj description] integerValue]]];
+	}];
+	return numbers;
+}
 
 @end

@@ -13,4 +13,6 @@
 - (void)println;
 - (NSString *)stringByReplacingWithPattern:(NSString *)pattern withTemplate:(NSString *)withTemplate error:(NSError **)error;
 - (BOOL)isAllDigits;
+- (NSArray<NSString *> *)splitOnSpaces;
+- (NSArray<NSNumber *> *)integersFromCSV;
 @end
