@@ -23,3 +23,6 @@
 
 @interface AOCDay05 : AOCSolution
 @end
+
+@interface AOCDay06 : AOCSolution
+@end
