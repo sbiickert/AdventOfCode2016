@@ -16,6 +16,7 @@
 - (RoomCode *) initWithName:(NSString *)name sectorID:(NSInteger)sector checksum:(NSString *)check;
 - (NSString *) calcChecksum;
 - (BOOL)isValid;
+- (NSString *) decryptName;
 
 @end
 
@@ -58,8 +59,25 @@
 }
 
 - (NSString *)solvePartTwo:(NSArray<NSString *> *)input {
+	NSString *result;
 	
-	return [NSString stringWithFormat: @"World"];
+	for (NSString *line in input) {
+		NSArray<NSString *> *matches = [line match:pattern];
+		if (matches == nil) {
+			NSLog(@"Could not parse %@", line);
+			continue;
+		}
+		RoomCode *rc = [[RoomCode alloc] initWithName:matches[1] sectorID:[matches[2] integerValue] checksum:matches[3]];
+		if ([rc isValid]) {
+			NSString *dName = [rc decryptName];
+			if ([[dName substringToIndex:9] isEqualToString:@"northpole"]) {
+				result = [NSString stringWithFormat: @"The room with north pole objects is in sector %ld", rc.sectorID];
+				break;
+			}
+		}
+	}
+
+	return result;
 }
 
 
@@ -95,5 +113,23 @@
 	NSString *temp = [self calcChecksum];
 	return [self.checksum isEqualToString:temp];
 }
+
+- (NSString *) decryptName {
+	NSArray<NSString *> *alphabet = [ALPHABET allCharacters];
+	NSMutableArray<NSString *> *temp = [NSMutableArray array];
+	
+	for (NSString *letter in [self.encName allCharacters]) {
+		if ([letter isEqualToString:@"-"]) {
+			[temp addObject:@" "];
+		}
+		else {
+			NSUInteger index = [alphabet indexOfObject:letter];
+			NSString *rotated = [alphabet objectAtIndex:(index + self.sectorID) % alphabet.count];
+			[temp addObject:rotated];
+		}
+	}
+	return [temp componentsJoinedByString:@""];
+}
+
 
 @end

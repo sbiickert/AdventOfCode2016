@@ -6,9 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>
 #import "AOCStrings.h"
 
 @implementation NSString (AOCString)
+
+NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 
 + (NSString *)binaryStringFromInteger:(int)number width:(int)width
 {
@@ -118,5 +121,32 @@
 	
 	return result;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (NSString *) md5Hex {
+	//https://stackoverflow.com/questions/2018550/how-do-i-create-an-md5-hash-of-a-string-in-cocoa
+	const char *cStr = [self UTF8String];
+	unsigned char result[CC_MD5_DIGEST_LENGTH];
+	CC_MD5( cStr, (CC_LONG)strlen(cStr), result ); // Deprecation warning suppressed by pragmas
+
+	char buffer[64];
+	sprintf(buffer, "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+		result[0],	result[1],	result[2],	result[3],
+		result[4],	result[5],	result[6],	result[7],
+		result[8],	result[9],	result[10],	result[11],
+		result[12],	result[13],	result[14],	result[15]);
+	return [[NSString stringWithCString:buffer encoding:NSUTF8StringEncoding] lowercaseString];
+	
+	// This is slow compared to using sprintf
+//	return [[NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+//		   result[0],	result[1],	result[2],	result[3],
+//		   result[4],	result[5],	result[6],	result[7],
+//		   result[8],	result[9],	result[10],	result[11],
+//		   result[12],	result[13],	result[14],	result[15]
+//	   ] lowercaseString];
+}
+#pragma clang diagnostic pop
+
 
 @end

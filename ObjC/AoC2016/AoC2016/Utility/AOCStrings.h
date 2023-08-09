@@ -5,6 +5,8 @@
 //  Created by Simon Biickert .
 //
 
+extern NSString * const ALPHABET;
+
 @interface NSString (AOCString)
 
 + (NSString *)binaryStringFromInteger:(int)number width:(int)width;
@@ -17,5 +19,6 @@
 - (NSArray<NSNumber *> *)integersFromCSV;
 - (NSArray<NSString *> *)match:(NSString *)pattern;
 - (NSDictionary<NSString *, NSNumber *> *)histogram;
+- (NSString *) md5Hex;
 
 @end
