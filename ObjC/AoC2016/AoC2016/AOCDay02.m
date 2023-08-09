@@ -79,7 +79,7 @@
 	NSMutableArray<NSString *> *code = [NSMutableArray array];
 	
 	for (NSString *line in input) {
-		NSArray<NSString *> *moves = [line getAllCharacters];
+		NSArray<NSString *> *moves = [line allCharacters];
 		for (NSString *move in moves) {
 			AOCCoord2D *nextKey = [location offset:[dirLookup valueForKey:move]];
 			if ([[keyPad stringAtCoord:nextKey] isEqualToString: keyPad.defaultValue.description] == NO) {
