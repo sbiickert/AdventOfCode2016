@@ -17,7 +17,8 @@ extern NSString * const ALPHABET;
 - (BOOL)isAllDigits;
 - (NSArray<NSString *> *)splitOnSpaces;
 - (NSArray<NSNumber *> *)integersFromCSV;
-- (NSArray<NSString *> *)match:(NSString *)pattern;
+- (NSArray<NSString *> *)matchPattern:(NSString *)pattern;
+- (NSArray<NSString *> *)match:(NSRegularExpression *)regex;
 - (NSDictionary<NSString *, NSNumber *> *)histogram;
 - (NSString *) md5Hex;
 

@@ -85,10 +85,18 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 	return numbers;
 }
 
-- (NSArray<NSString *> *)match:(NSString *)pattern {
-	NSMutableArray<NSString *> *result = nil;
+- (NSArray<NSString *> *)matchPattern:(NSString *)pattern {
 	NSError *err;
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&err];
+	NSArray<NSString *> *result = nil;
+	if (err != noErr) {
+		result = [self match:regex];
+	}
+	return result;
+}
+
+- (NSArray<NSString *> *)match:(NSRegularExpression *)regex {
+	NSMutableArray<NSString *> *result = nil;
 	long n = [regex numberOfMatchesInString:self options:0 range:NSMakeRange(0, self.length)];
 	if (n > 0) {
 		NSArray *matches = [regex matchesInString:self options:0 range:NSMakeRange(0, self.length)];

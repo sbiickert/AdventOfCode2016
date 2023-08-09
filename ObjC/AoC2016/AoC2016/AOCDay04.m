@@ -45,7 +45,7 @@
 	NSInteger sum = 0;
 	
 	for (NSString *line in input) {
-		NSArray<NSString *> *matches = [line match:pattern];
+		NSArray<NSString *> *matches = [line matchPattern:pattern];
 		if (matches == nil) {
 			NSLog(@"Could not parse %@", line);
 			continue;
@@ -62,7 +62,7 @@
 	NSString *result;
 	
 	for (NSString *line in input) {
-		NSArray<NSString *> *matches = [line match:pattern];
+		NSArray<NSString *> *matches = [line matchPattern:pattern];
 		if (matches == nil) {
 			NSLog(@"Could not parse %@", line);
 			continue;

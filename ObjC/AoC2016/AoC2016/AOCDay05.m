@@ -20,9 +20,6 @@
 	NSArray<NSString *> *input = [AOCInput readGroupedInputFile:filename atIndex:index];
 	NSString *prefix = input[0];
 	
-//	NSLog(@"digest of abc3231929 is %@", [@"abc3231929" md5Hex]);
-//	NSLog(@"digest of abc5017308 is %@", [@"abc5017308" md5Hex]);
-	
 	result.part1 = [self solvePartOne: prefix];
 	result.part2 = [self solvePartTwo: prefix];
 	
@@ -46,8 +43,31 @@
 }
 
 - (NSString *)solvePartTwo:(NSString *)input {
+	NSInteger i = 0;
+	NSMutableArray<NSString *> *builder = [NSMutableArray arrayWithArray:@[@"_",@"_",@"_",@"_",@"_",@"_",@"_",@"_"]];
+	NSString *format = @"%@%ld";
+	int foundCharacterCount = 0;
+
+	// Using precompiled regex
+	NSError *err;
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^0{5}([0-7])(\\w)" options:0 error:&err];
+
+	while (foundCharacterCount < 8) {
+		NSString *md5 = [[NSString stringWithFormat:format, input, i] md5Hex];
+		NSArray<NSString *> *matches = [md5 match:regex];
+		
+		if (matches != nil) {
+			NSInteger slot = [matches[1] integerValue];
+			if ([builder[slot] isEqualToString:@"_"]) {
+				builder[slot] = matches[2];
+				foundCharacterCount++;
+				[[builder componentsJoinedByString:@""] println];
+			}
+		}
+		i++;
+	}
 	
-	return [NSString stringWithFormat: @"World"];
+	return [NSString stringWithFormat: @"The password is %@", [builder componentsJoinedByString:@""]];
 }
 
 @end
