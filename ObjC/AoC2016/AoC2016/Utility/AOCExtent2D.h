@@ -25,6 +25,8 @@
 
 - (void)expandToFit:(AOCCoord2D *)coord;
 - (NSArray<AOCCoord2D *> *)allCoords;
+- (NSArray<AOCCoord2D *> *)coordsInColumn:(NSInteger)column;
+- (NSArray<AOCCoord2D *> *)coordsInRow:(NSInteger)row;
 - (BOOL)contains:(AOCCoord2D *)coord;
 - (AOCExtent2D *)inset:(NSInteger)amount;
 

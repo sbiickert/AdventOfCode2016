@@ -112,6 +112,22 @@
 	return coords;
 }
 
+- (NSArray<AOCCoord2D *> *)coordsInColumn:(NSInteger)column {
+	NSMutableArray<AOCCoord2D *> *coords = [NSMutableArray array];
+	for (NSInteger y = self.min.y; y <= self.max.y; y++) {
+		[coords addObject:[AOCCoord2D x:column y:y]];
+	}
+	return coords;
+}
+
+- (NSArray<AOCCoord2D *> *)coordsInRow:(NSInteger)row {
+	NSMutableArray<AOCCoord2D *> *coords = [NSMutableArray array];
+	for (NSInteger x = self.min.x; x <= self.max.x; x++) {
+		[coords addObject:[AOCCoord2D x:x y:row]];
+	}
+	return coords;
+}
+
 - (BOOL)contains:(AOCCoord2D *)coord
 {
 	return 	coord.x >= self.min.x &&
