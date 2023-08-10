@@ -89,7 +89,7 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 	NSError *err;
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&err];
 	NSArray<NSString *> *result = nil;
-	if (err != noErr) {
+	if (err == noErr) {
 		result = [self match:regex];
 	}
 	return result;

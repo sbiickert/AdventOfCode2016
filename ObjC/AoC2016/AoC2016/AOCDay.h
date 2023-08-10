@@ -26,3 +26,6 @@
 
 @interface AOCDay06 : AOCSolution
 @end
+
+@interface AOCDay07 : AOCSolution
+@end
