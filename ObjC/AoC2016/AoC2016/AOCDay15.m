@@ -35,22 +35,35 @@
 	for (NSString *line in input) {
 		[discs addObject:[[Disc alloc] init:line]];
 	}
-	// This was important!!!
-	[discs sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-		return ([obj1 positionCount] < [obj2 positionCount]) ? NSOrderedAscending : NSOrderedDescending;
-	}];
+	// This was important!!! Start with smallest positionCounts. Otherwise, time is too high.
+	[self sortDiscs:discs];
 	
-	result.part1 = [self solvePartOne: discs];
-	result.part2 = [self solvePartTwo: input];
+	result.part1 = [self solvePart: discs];
+
+	[discs addObject:[[Disc alloc] init:@"Disc #7 has 11 positions; at time=0, it is at position 0."]];
+	[self sortDiscs:discs];
+
+	result.part2 = [self solvePart: discs];
 	
 	return result;
 }
 
-- (NSString *)solvePartOne:(NSArray<Disc *> *)discs {
+- (NSString *)solvePart:(NSArray<Disc *> *)discs {
+	NSInteger time = [self findAlignment:discs];
+	return [NSString stringWithFormat: @"Discs aligned at time %ld", time];
+}
+
+- (void)sortDiscs:(NSMutableArray<Disc *> *)discs {
+	[discs sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+		return ([obj1 positionCount] < [obj2 positionCount]) ? NSOrderedAscending : NSOrderedDescending;
+	}];
+}
+
+- (NSInteger)findAlignment:(NSArray<Disc *> *)discs {
 	NSInteger step = discs[0].positionCount;
 	NSInteger time = discs[0].offsetAtZero;
 	for (NSInteger d = 1; d < discs.count; d++) {
-		NSLog(@"Disc #%ld", d);
+		//NSLog(@"Disc #%ld", d);
 		while (YES) {
 			if ([discs[d] isAlignedAtTime:time]) {
 				step *= discs[d].positionCount;
@@ -59,12 +72,7 @@
 			time += step;
 		}
 	}
-	return [NSString stringWithFormat: @"Discs aligned at time %ld", time];
-}
-
-- (NSString *)solvePartTwo:(NSArray<NSString *> *)input {
-	
-	return [NSString stringWithFormat: @"World"];
+	return time;
 }
 
 @end
