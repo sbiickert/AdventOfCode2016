@@ -50,16 +50,6 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 	printf("%s\n", [self cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
-- (NSString *)stringByReplacingWithPattern:(NSString *)pattern withTemplate:(NSString *)withTemplate error:(NSError **)error {
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
-																		   options:NSRegularExpressionCaseInsensitive
-																			 error:error];
-	return [regex stringByReplacingMatchesInString:self
-										   options:0
-											 range:NSMakeRange(0, self.length)
-									  withTemplate:withTemplate];
-}
-
 - (BOOL)isAllDigits
 {
 	NSMutableCharacterSet* nonNumbers = [[[NSCharacterSet decimalDigitCharacterSet] invertedSet] mutableCopy];
@@ -116,6 +106,18 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 	return result == nil ? nil : [NSArray arrayWithArray:result];
 }
 
+- (NSString *)replaceMatching:(NSString *)pattern with:(NSString *)newString {
+	NSError *err;
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+																		   options:NSRegularExpressionCaseInsensitive
+																			 error:&err];
+	if (err != noErr) { return nil; }
+	return [regex stringByReplacingMatchesInString:self
+										   options:0
+											 range:NSMakeRange(0, self.length)
+									  withTemplate:newString];
+}
+
 - (NSDictionary<NSString *, NSNumber *> *)histogram {
 	NSDictionary<NSString *, NSNumber *> *result = [NSMutableDictionary dictionary];
 	
@@ -132,7 +134,7 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-- (NSString *) md5Hex {
+- (NSString *)md5Hex {
 	//https://stackoverflow.com/questions/2018550/how-do-i-create-an-md5-hash-of-a-string-in-cocoa
 	const char *cStr = [self UTF8String];
 	unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -156,5 +158,15 @@ NSString * const ALPHABET = @"abcdefghijklmnopqrstuvwxyz";
 }
 #pragma clang diagnostic pop
 
+- (NSString *)reverse {
+	NSMutableString *reversedString = [NSMutableString stringWithCapacity:[self length]];
+
+	[self enumerateSubstringsInRange:NSMakeRange(0,[self length])
+							 options:(NSStringEnumerationReverse | NSStringEnumerationByComposedCharacterSequences)
+						  usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+								[reversedString appendString:substring];
+							}];
+	return reversedString;
+}
 
 @end
