@@ -14,7 +14,6 @@
 @property NSInteger giftCount;
 
 - (GameElf *)initWithID:(NSInteger)elfID andPrevious:(GameElf *)elf;
-- (void)takeGifts;
 - (GameElf *)removeFromCircle;
 
 @end
@@ -38,21 +37,12 @@
 }
 
 - (NSString *)solvePartOne:(NSString *)input {
-	GameElf *current = [[GameElf alloc] initWithID:1 andPrevious:nil];
-	GameElf *previous = current;
-	GameElf *elf;
-	for (NSInteger i = 1; i < [input integerValue]; i++) {
-		elf = [[GameElf alloc] initWithID:previous.elfID+1 andPrevious:previous];
-		previous = elf;
-	}
-	current.prev = elf;
-	elf.next = current;
+	GameElf *current = [self buildRing:[input integerValue]];
 	
 	while ([current.next isEqualTo:current] == NO) {
-		[current takeGifts];
-		if (current.next.giftCount == 0) {
-			[current.next removeFromCircle];
-		}
+		current.giftCount += current.next.giftCount;
+		current.next.giftCount = 0;
+		[current.next removeFromCircle];
 		current = current.next;
 	}
 	
@@ -60,8 +50,44 @@
 }
 
 - (NSString *)solvePartTwo:(NSString *)input {
+	NSInteger elfCount = [input integerValue];
+	GameElf *current = [self buildRing:elfCount];
 	
-	return [NSString stringWithFormat: @"World"];
+	// Maintaining a second pointer "across the circle"
+	GameElf *target = current;
+	NSInteger skipCount = elfCount / 2;
+	for (NSInteger i = 0; i < skipCount; i++) {
+		target = target.next;
+	}
+
+	while ([current.next isEqualTo:current] == NO) {
+		current.giftCount += target.giftCount;
+		[target removeFromCircle];
+		
+		// Move the target pointer
+		target = target.next;
+		if (elfCount % 2 == 1) {
+			target = target.next; // Skip a second if odd number of elves
+		}
+		
+		elfCount--;
+		current = current.next;
+	}
+
+	return [NSString stringWithFormat: @"The last elf is #%ld with %ld gifts", current.elfID, current.giftCount];
+}
+
+- (GameElf *)buildRing:(NSInteger)size {
+	GameElf *current = [[GameElf alloc] initWithID:1 andPrevious:nil];
+	GameElf *previous = current;
+	GameElf *elf;
+	for (NSInteger i = 1; i < size; i++) {
+		elf = [[GameElf alloc] initWithID:previous.elfID+1 andPrevious:previous];
+		previous = elf;
+	}
+	current.prev = elf;
+	elf.next = current;
+	return current;
 }
 
 @end
@@ -76,11 +102,6 @@
 	elf.next = self;
 	_next = nil;
 	return self;
-}
-
-- (void)takeGifts {
-	self.giftCount += self.next.giftCount;
-	self.next.giftCount = 0;
 }
 
 - (GameElf *)removeFromCircle {
