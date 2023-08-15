@@ -42,30 +42,41 @@
 
 - (NSString *)solvePartTwo:(NSString *)input {
 	NSInteger nRows = 400000;
-	
-	NSArray<NSString *> *prevRow = [input allCharacters];
+	NSInteger nCols = input.length;
 	NSInteger safeCount = 0; // 3224145 too low, 21999993 too high
+	NSArray<NSString *> *firstRow = [input allCharacters];
 	
-	for (int i = 0; i < prevRow.count; i++) {
-		if ([prevRow[i] isEqualToString:@"."]) { safeCount++; }
+	// Switched from using NSString and NSArray to an array of ints for speed
+	// 0 = safe, 1 = trap
+	int prevRow[nCols];
+	int thisRow[nCols];
+	for (int i = 0; i < nCols; i++) {
+		if ([firstRow[i] isEqualToString:@"."]) {
+			safeCount++;
+			prevRow[i] = 0;
+		}
+		else {
+			prevRow[i] = 1;
+		}
 	}
-	
-	NSMutableArray<NSString *> *thisRow = [prevRow mutableCopy]; // Arbitrary content of the right length
-	
+		
 	for (NSInteger r = 1; r < nRows; r++) {
-		for (NSInteger c = 0; c < thisRow.count; c++) {
-			NSString *left = (c > 0) ? prevRow[c-1] : @".";
-			NSString *center = prevRow[c];
-			NSString *right = (c < prevRow.count - 1) ? prevRow[c+1] : @".";
+		for (NSInteger c = 0; c < nCols; c++) {
+			int left =   (c > 0) ? prevRow[c-1] : 0;
+			int center = prevRow[c];
+			int right =  (c < nCols - 1) ? prevRow[c+1] : 0;
 			
-			BOOL isTrap = ([left isEqualToString:@"^"] && [center isEqualToString:@"^"] && [right isEqualToString:@"."]) ||
-						  ([left isEqualToString:@"."] && [center isEqualToString:@"^"] && [right isEqualToString:@"^"]) ||
-						  ([left isEqualToString:@"^"] && [center isEqualToString:@"."] && [right isEqualToString:@"."]) ||
-						  ([left isEqualToString:@"."] && [center isEqualToString:@"."] && [right isEqualToString:@"^"]);
-			thisRow[c] = isTrap ? @"^" : @".";
+			BOOL isTrap = (left == 1 && center == 1 && right == 0) ||
+						  (left == 0 && center == 1 && right == 1) ||
+						  (left == 1 && center == 0 && right == 0) ||
+						  (left == 0 && center == 0 && right == 1);
+			thisRow[c] = isTrap ? 1 : 0;
 			if (!isTrap) { safeCount++; }
 		}
-		prevRow = [thisRow copy];
+		
+		for (NSInteger c = 0; c < nCols; c++) {
+			prevRow[c] = thisRow[c];
+		}
 	}
 	
 	return [NSString stringWithFormat: @"The number of safe tiles is %ld", safeCount];
