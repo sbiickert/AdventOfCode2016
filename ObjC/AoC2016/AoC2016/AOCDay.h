@@ -43,3 +43,6 @@
 
 @interface AOCDay17 : AOCSolution
 @end
+
+@interface AOCDay18 : AOCSolution
+@end
