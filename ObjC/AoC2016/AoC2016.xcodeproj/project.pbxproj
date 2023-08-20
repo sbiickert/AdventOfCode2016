@@ -27,6 +27,7 @@
 		3772B00A2A857F3C006BFAF4 /* AOCDay08.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772B0092A857F3C006BFAF4 /* AOCDay08.m */; };
 		378A09532A8C0824006F1334 /* AOCDay19.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A09522A8C0824006F1334 /* AOCDay19.m */; };
 		378B6CC22A8C296C002AFC2F /* AOCDay20.m in Sources */ = {isa = PBXBuildFile; fileRef = 378B6CC12A8C296C002AFC2F /* AOCDay20.m */; };
+		378DBBFB2A91B88300287637 /* AOCDay22.m in Sources */ = {isa = PBXBuildFile; fileRef = 378DBBFA2A91B88300287637 /* AOCDay22.m */; };
 		378E12062A84327000515993 /* AOCDay06.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E12052A84327000515993 /* AOCDay06.m */; };
 		379CAF3F2A81563900462058 /* AOCPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 379CAF3E2A81563900462058 /* AOCPosition.m */; };
 		37B02AD12A8308AE009BF41A /* AOCDay04.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B02AD02A8308AE009BF41A /* AOCDay04.m */; };
@@ -75,6 +76,7 @@
 		3772B0092A857F3C006BFAF4 /* AOCDay08.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay08.m; sourceTree = "<group>"; };
 		378A09522A8C0824006F1334 /* AOCDay19.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay19.m; sourceTree = "<group>"; };
 		378B6CC12A8C296C002AFC2F /* AOCDay20.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay20.m; sourceTree = "<group>"; };
+		378DBBFA2A91B88300287637 /* AOCDay22.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay22.m; sourceTree = "<group>"; };
 		378E12052A84327000515993 /* AOCDay06.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay06.m; sourceTree = "<group>"; };
 		379CAF3E2A81563900462058 /* AOCPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCPosition.m; sourceTree = "<group>"; };
 		379CAF402A81565A00462058 /* AOCPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AOCPosition.h; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				378A09522A8C0824006F1334 /* AOCDay19.m */,
 				378B6CC12A8C296C002AFC2F /* AOCDay20.m */,
 				371764342A8D23C6005F1DD1 /* AOCDay21.m */,
+				378DBBFA2A91B88300287637 /* AOCDay22.m */,
 				3741BA582A7FF2B300E16F5D /* Utility */,
 				3741BA572A7FF29300E16F5D /* AoC2016.entitlements */,
 			);
@@ -239,6 +242,7 @@
 				3741BA6A2A7FF2C200E16F5D /* AOCGrid2D.m in Sources */,
 				378E12062A84327000515993 /* AOCDay06.m in Sources */,
 				374A8B372A89CEA500F51777 /* AOCDay17.m in Sources */,
+				378DBBFB2A91B88300287637 /* AOCDay22.m in Sources */,
 				3748305A2A8AC17900E2D935 /* AOCDay18.m in Sources */,
 				3741BA662A7FF2C200E16F5D /* AOCInput.m in Sources */,
 				3741BA692A7FF2C200E16F5D /* AOCCoord.m in Sources */,
