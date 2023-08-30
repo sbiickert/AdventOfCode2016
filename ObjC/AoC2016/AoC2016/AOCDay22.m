@@ -8,7 +8,9 @@
 #import "AOCStrings.h"
 #import "AOCGrid2D.h"
 
-@interface GridNode : NSObject
+@interface GridNode : NSObject <AOCGridRepresentable>
+
+@property (class) NSInteger immovableSize;
 
 @property (readonly) NSString *nodeID;
 @property (readonly) AOCCoord2D *coord;
@@ -36,6 +38,8 @@
 	struct AOCResult result = [super solveInputIndex:index inFile:filename];
 	
 	NSArray<NSString *> *input = [AOCInput readGroupedInputFile:filename atIndex:index];
+	
+	GridNode.immovableSize = 0;
 	
 	result.part1 = [self solvePartOne: input];
 	result.part2 = [self solvePartTwo: input];
@@ -68,24 +72,92 @@
 }
 
 - (NSString *)solvePartTwo:(NSArray<NSString *> *)input {
+	AOCGrid2D *grid = [self parseGrid:input];
 	
-	return [NSString stringWithFormat: @"World"];
+	GridNode *goal = [self getNodeAt:[AOCCoord2D x:31 y:0] in:grid];
+	goal.content = 59; // Unique amount, allowing tracking
+
+	// World's most boring video game :-)
+	[grid print]; // 195
+	
+	NSInteger count = 0;
+	AOCCoord2D *empty = [self findEmptyNodeIn:grid];
+
+	while ([self getNodeAt:[AOCCoord2D origin] in:grid].content != 59) {
+		NSString *dir = [self getMoveDirection];
+		if (dir != nil) {
+			GridNode *source = [self getNodeAt:[empty offset:dir] in: grid];
+			[source moveDataTo:[self getNodeAt:empty in:grid]];
+			empty = [self findEmptyNodeIn:grid];
+			[grid print];
+			count++;
+		}
+		NSLog(@"Move count: %ld", count);
+	}
+	return [NSString stringWithFormat: @"The fewest number of moves is %ld", count];
 }
 
 - (AOCGrid2D *)parseGrid:(NSArray<NSString *> *)input {
 	AOCGrid2D *grid = [AOCGrid2D grid];
+	NSInteger sumSize = 0;
+	NSInteger count = 0;
 	
 	for (NSString *line in input) {
-		GridNode *node = [[GridNode alloc] init:line];
-		[grid setObject:node atCoord:node.coord];
+		if ([[line allCharacters][0] isEqualToString:@"/"]) {
+			GridNode *node = [[GridNode alloc] init:line];
+			[grid setObject:node atCoord:node.coord];
+			sumSize += node.size;
+			count++;
+		}
 	}
 	
+	GridNode.immovableSize = sumSize / count;
+	
 	return grid;
+}
+
+- (GridNode *)getNodeAt:(AOCCoord2D *)coord in:(AOCGrid2D *)grid {
+	NSObject *o = [grid objectAtCoord:coord];
+	if ([o isKindOfClass:[GridNode class]]) {
+		return (GridNode *)o;
+	}
+	return nil;
+}
+
+- (NSString *)getMoveDirection {
+	NSFileHandle *stdin = NSFileHandle.fileHandleWithStandardInput;
+	NSData *data = stdin.availableData;
+	NSString *inStr = [[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] uppercaseString] allCharacters][0];
+	if ([inStr isEqualToString:@"U"]) 	{	return UP;	}
+	if ([inStr isEqualToString:@"D"]) 	{	return DOWN;	}
+	if ([inStr isEqualToString:@"L"]) 	{	return LEFT;	}
+	if ([inStr isEqualToString:@"R"]) 	{	return RIGHT;	}
+	[NSString stringWithFormat:@"%@ is not a valid direction. U,D,L,R", inStr];
+	return nil;
+}
+
+- (AOCCoord2D *)findEmptyNodeIn:(AOCGrid2D *)grid {
+	for (AOCCoord2D *coord in grid.coords) {
+		if ([self getNodeAt:coord in:grid].content == 0) {
+			return coord;
+		}
+	}
+	return nil;
 }
 
 @end
 
 @implementation GridNode
+
+static NSInteger _IMMOVABLE_SIZE = 0;
+
++ (NSInteger)immovableSize {
+	return _IMMOVABLE_SIZE;
+}
+
++ (void)setImmovableSize:(NSInteger)value {
+	_IMMOVABLE_SIZE = value;
+}
 
 - (GridNode *)init:(NSString *)dfInfo {
 	self = [super init];
@@ -122,5 +194,18 @@
 	self.content = 0;
 }
 
+
+- (NSString *)stringRepresentation {
+	if (self.content == 0) {
+		return @" ";
+	}
+	if (self.content == 59) {
+		return @"G";
+	}
+	if (self.size > GridNode.immovableSize) {
+		return @"#";
+	}
+	return @".";
+}
 
 @end

@@ -47,3 +47,9 @@ extern NSString * const HEX;
 - (BOOL)isEqualToGrid:(AOCGrid2D *)other;
 
 @end
+
+@protocol AOCGridRepresentable <NSObject>
+
+- (NSString *)stringRepresentation;
+
+@end

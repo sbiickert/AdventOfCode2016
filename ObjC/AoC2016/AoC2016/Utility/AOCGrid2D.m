@@ -186,7 +186,10 @@ NSString * const HEX = @"hex";
 		NSString *line = @"";
 		for (NSInteger col = _extent.min.x; col <= _extent.max.x; col++) {
 			AOCCoord2D *c = [AOCCoord2D x:col y:row];
-			NSObject *value = [self objectAtCoord:c];
+			id value = [self objectAtCoord:c];
+			if ([value respondsToSelector:@selector(stringRepresentation)]) {
+				value = [value stringRepresentation];
+			}
 			if (overlay != nil && [overlay objectForKey:c] != nil) {
 				value = [overlay objectForKey:c];
 			}
