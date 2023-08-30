@@ -34,6 +34,12 @@
 @end
 
 
+@interface AOCDay11 : AOCSolution
+@end
+
+@interface AOCDay12 : AOCSolution
+@end
+
 
 @interface AOCDay15 : AOCSolution
 @end
@@ -57,4 +63,7 @@
 @end
 
 @interface AOCDay22 : AOCSolution
+@end
+
+@interface AOCDay23 : AOCSolution
 @end
