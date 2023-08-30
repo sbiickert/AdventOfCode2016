@@ -11,6 +11,7 @@
 
 - (AssemBunnyCode23 *)init:(NSString *)defn;
 
+@property (readonly) NSString *defn;
 @property (readonly) NSString *instruction;
 @property (readonly) NSString *x;
 @property (readonly) NSString *y;
@@ -70,8 +71,12 @@
 }
 
 - (NSString *)solvePartTwo:(NSArray<AssemBunnyCode23 *> *)input {
+	// The program boils down to:
+	//   n! + (78*99)
+	//
+	// 12! is 479001600, 78*99 is 7722
 	
-	return [NSString stringWithFormat: @"World"];
+	return [NSString stringWithFormat: @"Code to send is %d", 479001600 + (78*99)];
 }
 
 @end
@@ -82,6 +87,7 @@
 - (AssemBunnyCode23 *)init:(NSString *)defn {
 	self = [super init];
 	
+	_defn = defn;
 	NSArray<NSString *> *parts = [defn componentsSeparatedByString:@" "];
 	_instruction = parts[0];
 	_x = parts[1];
@@ -131,9 +137,16 @@
 
 - (void)run {
 	_ptr = 0;
+	//[self printRegisters];
 	while (_ptr < _program.count) {
+		//[[NSString stringWithFormat:@"%ld -> %@", _ptr, _program[_ptr].defn] println];
 		[self exec:_program[_ptr]];
+		//[self printRegisters];
 	}
+}
+
+- (void)printRegisters {
+	[[NSString stringWithFormat:@"\ta: %@\tb: %@\tc: %@\td: %@", _registers[@"a"], _registers[@"b"], _registers[@"c"], _registers[@"d"]] println];
 }
 
 - (void)exec:(AssemBunnyCode23 *)code {
