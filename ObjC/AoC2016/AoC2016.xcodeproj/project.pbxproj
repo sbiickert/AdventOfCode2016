@@ -35,6 +35,7 @@
 		37B67F9B2A9FA04D00A9F06B /* AOCDay23.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B67F9A2A9FA04D00A9F06B /* AOCDay23.m */; };
 		37B67F9D2A9FA0B200A9F06B /* AOCDay11.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B67F9C2A9FA0B200A9F06B /* AOCDay11.m */; };
 		37B67F9F2A9FA17300A9F06B /* AOCDay12.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B67F9E2A9FA17300A9F06B /* AOCDay12.m */; };
+		37BEE1772AA29A5D00FA8B13 /* AOCDay25.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BEE1762AA29A5D00FA8B13 /* AOCDay25.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +90,7 @@
 		37B67F9A2A9FA04D00A9F06B /* AOCDay23.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay23.m; sourceTree = "<group>"; };
 		37B67F9C2A9FA0B200A9F06B /* AOCDay11.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay11.m; sourceTree = "<group>"; };
 		37B67F9E2A9FA17300A9F06B /* AOCDay12.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay12.m; sourceTree = "<group>"; };
+		37BEE1762AA29A5D00FA8B13 /* AOCDay25.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay25.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +145,10 @@
 				371764342A8D23C6005F1DD1 /* AOCDay21.m */,
 				378DBBFA2A91B88300287637 /* AOCDay22.m */,
 				37B67F9A2A9FA04D00A9F06B /* AOCDay23.m */,
+				378C1A3E2AA2704A00F9B28B /* AOCDay24.m */,
+				37BEE1762AA29A5D00FA8B13 /* AOCDay25.m */,
 				3741BA582A7FF2B300E16F5D /* Utility */,
 				3741BA572A7FF29300E16F5D /* AoC2016.entitlements */,
-				378C1A3E2AA2704A00F9B28B /* AOCDay24.m */,
 			);
 			path = AoC2016;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				3741BA662A7FF2C200E16F5D /* AOCInput.m in Sources */,
 				3741BA692A7FF2C200E16F5D /* AOCCoord.m in Sources */,
 				3772B00A2A857F3C006BFAF4 /* AOCDay08.m in Sources */,
+				37BEE1772AA29A5D00FA8B13 /* AOCDay25.m in Sources */,
 				3741BA6D2A7FF31500E16F5D /* AOCDay01.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
