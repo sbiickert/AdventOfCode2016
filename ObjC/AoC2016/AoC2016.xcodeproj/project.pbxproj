@@ -27,6 +27,7 @@
 		3772B00A2A857F3C006BFAF4 /* AOCDay08.m in Sources */ = {isa = PBXBuildFile; fileRef = 3772B0092A857F3C006BFAF4 /* AOCDay08.m */; };
 		378A09532A8C0824006F1334 /* AOCDay19.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A09522A8C0824006F1334 /* AOCDay19.m */; };
 		378B6CC22A8C296C002AFC2F /* AOCDay20.m in Sources */ = {isa = PBXBuildFile; fileRef = 378B6CC12A8C296C002AFC2F /* AOCDay20.m */; };
+		378C1A3F2AA2704A00F9B28B /* AOCDay24.m in Sources */ = {isa = PBXBuildFile; fileRef = 378C1A3E2AA2704A00F9B28B /* AOCDay24.m */; };
 		378DBBFB2A91B88300287637 /* AOCDay22.m in Sources */ = {isa = PBXBuildFile; fileRef = 378DBBFA2A91B88300287637 /* AOCDay22.m */; };
 		378E12062A84327000515993 /* AOCDay06.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E12052A84327000515993 /* AOCDay06.m */; };
 		379CAF3F2A81563900462058 /* AOCPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 379CAF3E2A81563900462058 /* AOCPosition.m */; };
@@ -79,6 +80,7 @@
 		3772B0092A857F3C006BFAF4 /* AOCDay08.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay08.m; sourceTree = "<group>"; };
 		378A09522A8C0824006F1334 /* AOCDay19.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay19.m; sourceTree = "<group>"; };
 		378B6CC12A8C296C002AFC2F /* AOCDay20.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay20.m; sourceTree = "<group>"; };
+		378C1A3E2AA2704A00F9B28B /* AOCDay24.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay24.m; sourceTree = "<group>"; };
 		378DBBFA2A91B88300287637 /* AOCDay22.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay22.m; sourceTree = "<group>"; };
 		378E12052A84327000515993 /* AOCDay06.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCDay06.m; sourceTree = "<group>"; };
 		379CAF3E2A81563900462058 /* AOCPosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AOCPosition.m; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				37B67F9A2A9FA04D00A9F06B /* AOCDay23.m */,
 				3741BA582A7FF2B300E16F5D /* Utility */,
 				3741BA572A7FF29300E16F5D /* AoC2016.entitlements */,
+				378C1A3E2AA2704A00F9B28B /* AOCDay24.m */,
 			);
 			path = AoC2016;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				379CAF3F2A81563900462058 /* AOCPosition.m in Sources */,
 				37B67F9B2A9FA04D00A9F06B /* AOCDay23.m in Sources */,
 				3746A9292A83FE32007CEF2E /* AOCDay05.m in Sources */,
+				378C1A3F2AA2704A00F9B28B /* AOCDay24.m in Sources */,
 				37B67F9F2A9FA17300A9F06B /* AOCDay12.m in Sources */,
 				375841792A8538C50058767C /* AOCDay07.m in Sources */,
 				3741BA512A7FF24C00E16F5D /* main.m in Sources */,

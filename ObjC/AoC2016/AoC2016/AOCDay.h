@@ -67,3 +67,6 @@
 
 @interface AOCDay23 : AOCSolution
 @end
+
+@interface AOCDay24 : AOCSolution
+@end
