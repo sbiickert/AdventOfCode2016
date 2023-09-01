@@ -20,23 +20,26 @@
 	
 	NSArray<NSString *> *input = [AOCInput readGroupedInputFile:filename atIndex:index];
 	
-	result.part1 = [self solvePartOne: input];
-	result.part2 = [self solvePartTwo: input];
+	AOCGrid2D *maze = [self parseMaze:input];
+
+	result.part1 = [self solvePartOne: maze];
+	result.part2 = [self solvePartTwo: maze];
 	
 	return result;
 }
 
-- (NSString *)solvePartOne:(NSArray<NSString *> *)input {
-	AOCGrid2D *maze = [self parseMaze:input];
+- (NSString *)solvePartOne:(AOCGrid2D *)maze {
 	NSDictionary<NSNumber *, NSDictionary<NSNumber *, NSNumber *> *>*distances = [self getDistancesInMaze:maze];
 	
-	NSInteger shortestDistance = [self shortestTravellingSalesman:distances starting:@0 distanceSoFar:0 visited:[NSArray array]]; //442 too low
+	NSInteger shortestDistance = [self shortestTravellingSalesman:distances starting:@0 distanceSoFar:0 visited:[NSArray array] returningToZero:NO];
 	return [NSString stringWithFormat: @"The shortest distance is %ld", shortestDistance];
 }
 
-- (NSString *)solvePartTwo:(NSArray<NSString *> *)input {
+- (NSString *)solvePartTwo:(AOCGrid2D *)maze {
+	NSDictionary<NSNumber *, NSDictionary<NSNumber *, NSNumber *> *>*distances = [self getDistancesInMaze:maze];
 	
-	return [NSString stringWithFormat: @"World"];
+	NSInteger shortestDistance = [self shortestTravellingSalesman:distances starting:@0 distanceSoFar:0 visited:[NSArray array] returningToZero:YES];
+	return [NSString stringWithFormat: @"The shortest distance returning to 0 is %ld", shortestDistance];
 }
 
 - (AOCGrid2D *)parseMaze:(NSArray<NSString *> *)input {
@@ -116,7 +119,8 @@
 - (NSInteger)shortestTravellingSalesman:(NSDictionary<NSNumber *, NSDictionary<NSNumber *, NSNumber *> *>*)distances
 							   starting:(NSNumber *)start
 						  distanceSoFar:(NSInteger)distance
-								visited:(NSArray<NSNumber *>*)visited {
+								visited:(NSArray<NSNumber *>*)visited
+						returningToZero:(BOOL)returnToZero {
 	int nextVisitedCount = 0;
 	NSInteger shortest = 1000000;
 	for (NSNumber *next in [distances[start] allKeys]) {
@@ -126,7 +130,8 @@
 			NSInteger recursiveDistance = [self shortestTravellingSalesman:distances
 																  starting: next
 															 distanceSoFar:distance + [distances[start][next] integerValue]
-																   visited:vCopy];
+																   visited:vCopy
+														   returningToZero:returnToZero];
 			if (recursiveDistance < shortest) {
 				shortest = recursiveDistance;
 			}
@@ -135,6 +140,9 @@
 	}
 	if (nextVisitedCount == 0) {
 		//[[NSString stringWithFormat: @"%ld: %@, %@", distance, [visited componentsJoinedByString:@", "], start] println];
+		if (returnToZero) {
+			distance += [distances[start][@0] integerValue];
+		}
 		return distance;
 	}
 	return shortest;
