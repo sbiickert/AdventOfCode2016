@@ -24,3 +24,13 @@ There have been times (esp. Day 11) that I wished for an interactive debugger, b
 Not sure why I got the urge to change it up, but it happened. Maybe it's because I want to solve 2023 as far down the [AoC Survey Results](https://jeroenheijmans.github.io/advent-of-code-surveys/#) as I can. Last year, 39 people solved with some variant of Perl (including Raku), but only 2 with ObjC, the same as Pascal. I don't see any language lower on the list that I would even want to do.
 
 I had the libraries from doing 2017 all ready to go, so I set ObjC up for 2016. The language is different enough that even re-doing Day 1 was a challenge. But already with Day 2 it's becoming easier.
+
+## Finished
+
+Another 50 ⭐️ added to my account! I finished out this year's challenges in Objective C. There were no real issues with using the language, excepting that every once in a while something that should be a one-liner takes more (sometimes much more). My AOC libraries continue to grow, providing the one-liner option for things that come up frequently.
+
+One major note: this is the first year where I did not have to reference another person's solution. Usually there is one problem that is esoteric math where I can't figure out a solution that will finish in a reasonable time. I did have a couple of interesting ones, though:
+
+- Day 11: I used a DFS to try to find the solution, and spent hours slowly ratcheting down the constraint on what the answer _might_ be. That constraint made the code run in reasonable time, but even so, the heuristic was sensitive to random order of the data.
+- Day 22: Once I'd mapped out the grid of compute nodes, it was clear that the answer was actually doable with pen and paper. I could have written an algorithm to solve part 2, but instead I let the user control the movement of data interactively. In short, a text-based video game shifting data across the grid. It's dumb, but it worked.
+- Day 23: This one was the one that typically stumps me: following the instructions literally solved part one, but then would not solve part two in a reasonable amount of time. I happened to figure out what the mathematical pattern was, which is not the usual for me.
